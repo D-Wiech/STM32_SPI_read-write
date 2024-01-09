@@ -1,0 +1,3 @@
+../Core/Src/dts.c:30:6:MX_DTS_Init	2
+../Core/Src/dts.c:58:6:HAL_DTS_MspInit	2
+../Core/Src/dts.c:74:6:HAL_DTS_MspDeInit	2

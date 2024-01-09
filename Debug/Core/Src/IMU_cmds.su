@@ -1,0 +1,7 @@
+../Core/Src/IMU_cmds.c:15:19:IMU_send_cmd	40	static
+../Core/Src/IMU_cmds.c:27:19:IMU_write_reg	32	static
+../Core/Src/IMU_cmds.c:44:19:IMU_WHO_AM_I	24	static
+../Core/Src/IMU_cmds.c:61:19:IMU_activate	24	static
+../Core/Src/IMU_cmds.c:87:19:IMU_deactivate	24	static
+../Core/Src/IMU_cmds.c:114:19:IMU_register_bank_change	24	static
+../Core/Src/IMU_cmds.c:133:19:IMU_setup	24	static
