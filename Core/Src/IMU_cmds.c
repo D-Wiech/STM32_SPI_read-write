@@ -16,10 +16,21 @@ HAL_StatusTypeDef IMU_send_cmd(IMU *IMU_struct, uint8_t TX[], uint8_t RX[], uint
 {
 	//Sends and Receives two bytes to the Sensor
 	//HAL_SPI_Abort(&IMU_struct->SPI_handler);
-	uint32_t Timeout = 3;
+	uint32_t Timeout = 1;
 	HAL_GPIO_WritePin(IMU_struct->GPIO_port, IMU_struct->GPIO_Pin, GPIO_PIN_RESET );
 	const HAL_StatusTypeDef return_Value = HAL_SPI_TransmitReceive(&IMU_struct->SPI_handler, TX, RX, length, Timeout);
 	HAL_GPIO_WritePin(IMU_struct->GPIO_port, IMU_struct->GPIO_Pin, GPIO_PIN_SET );
+
+	return return_Value;
+}
+
+HAL_StatusTypeDef IMU_start_send_cmd_it(IMU *IMU_struct, uint8_t TX[], uint8_t RX[], uint16_t length)
+{
+	//Sends and Receives two bytes to the Sensor
+	//HAL_SPI_Abort(&IMU_struct->SPI_handler);
+	uint32_t Timeout = 3;
+	HAL_GPIO_WritePin(IMU_struct->GPIO_port, IMU_struct->GPIO_Pin, GPIO_PIN_RESET );
+	const HAL_StatusTypeDef return_Value = HAL_SPI_TransmitReceive_IT(&IMU_struct->SPI_handler, TX, RX, length);
 
 	return return_Value;
 }

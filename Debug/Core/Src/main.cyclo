@@ -1,8 +1,8 @@
 ../Core/Src/main.c:101:5:main	5
-../Core/Src/main.c:221:6:SystemClock_Config	4
-../Core/Src/main.c:279:6:PeriphCommonClock_Config	2
-../Core/Src/main.c:304:6:Debug_send_Tempreture	1
-../Core/Src/main.c:314:19:debug_uart4_write_int	2
-../Core/Src/main.c:326:19:debug_uart4_write_text	2
-../Core/Src/main.c:336:19:debug_uart4_write_float	2
-../Core/Src/main.c:354:6:Error_Handler	1
+../Core/Src/main.c:228:6:SystemClock_Config	4
+../Core/Src/main.c:286:6:PeriphCommonClock_Config	2
+../Core/Src/main.c:311:6:Debug_send_Tempreture	1
+../Core/Src/main.c:321:19:debug_uart4_write_int	2
+../Core/Src/main.c:333:19:debug_uart4_write_text	2
+../Core/Src/main.c:343:19:debug_uart4_write_float	2
+../Core/Src/main.c:361:6:Error_Handler	1

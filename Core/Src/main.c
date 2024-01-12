@@ -176,7 +176,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  RXData[1] = 0;
+	  RXData[1] = 25;
 
 	  if(IMU_send_cmd(&IMU1_data, TXData, RXData, length) != HAL_OK)
 	  {
@@ -184,17 +184,17 @@ int main(void)
 	  }
 	  debug_uart4_write_text("WHO AM I (1): ");debug_uart4_write_int((int)RXData[1]);
 
-	  if(RXData[1] == 0)
+	  if(RXData[1] != 71)
 	  {
 		  SPI1_ERROR_COUNT++;
 		  ERROR_NOTICE = 1;
 	  }
 
-	  RXData[1] = 0;
+	  RXData[1] = 25;
 	  IMU_send_cmd(&IMU2_data, TXData, RXData, length);
 	  debug_uart4_write_text("; WHO AM I (2): ");debug_uart4_write_int((int)RXData[1]);
 
-	  if(RXData[1] == 0)
+	  if(RXData[1] != 71)
 	  {
 		  SPI2_ERROR_COUNT++;
 		  ERROR_NOTICE = 1;
@@ -209,7 +209,14 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  Debug_send_Tempreture();
-	  HAL_Delay(100);
+	  HAL_Delay(250);
+	  int i = 0;
+	  /*
+	  while(i < 0xFFFFFF)
+	  {
+		  i++;
+	  }
+	  */
   }
   /* USER CODE END 3 */
 }

@@ -1,7 +1,8 @@
 ../Core/Src/IMU_cmds.c:15:19:IMU_send_cmd	1
-../Core/Src/IMU_cmds.c:27:19:IMU_write_reg	2
-../Core/Src/IMU_cmds.c:44:19:IMU_WHO_AM_I	2
-../Core/Src/IMU_cmds.c:61:19:IMU_activate	2
-../Core/Src/IMU_cmds.c:87:19:IMU_deactivate	2
-../Core/Src/IMU_cmds.c:114:19:IMU_register_bank_change	2
-../Core/Src/IMU_cmds.c:133:19:IMU_setup	12
+../Core/Src/IMU_cmds.c:27:19:IMU_start_send_cmd_it	1
+../Core/Src/IMU_cmds.c:38:19:IMU_write_reg	2
+../Core/Src/IMU_cmds.c:55:19:IMU_WHO_AM_I	2
+../Core/Src/IMU_cmds.c:72:19:IMU_activate	2
+../Core/Src/IMU_cmds.c:98:19:IMU_deactivate	2
+../Core/Src/IMU_cmds.c:125:19:IMU_register_bank_change	2
+../Core/Src/IMU_cmds.c:144:19:IMU_setup	12
