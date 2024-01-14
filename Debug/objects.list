@@ -3,6 +3,7 @@
 "./Core/Src/STM32_Cordic.o"
 "./Core/Src/adc.o"
 "./Core/Src/cordic.o"
+"./Core/Src/dma.o"
 "./Core/Src/dts.o"
 "./Core/Src/gpio.o"
 "./Core/Src/main.o"

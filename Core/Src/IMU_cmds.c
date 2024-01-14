@@ -14,23 +14,15 @@
 
 HAL_StatusTypeDef IMU_send_cmd(IMU *IMU_struct, uint8_t TX[], uint8_t RX[], uint16_t length)
 {
+
 	//Sends and Receives two bytes to the Sensor
-	//HAL_SPI_Abort(&IMU_struct->SPI_handler);
 	uint32_t Timeout = 1;
-	HAL_GPIO_WritePin(IMU_struct->GPIO_port, IMU_struct->GPIO_Pin, GPIO_PIN_RESET );
+	uint8_t TXD = 0;
+	uint8_t RXD = 0;
+	HAL_SPI_TransmitReceive(&IMU_struct->SPI_handler, &TXD, &RXD, 1, Timeout);//Dummy SPI read
+	HAL_GPIO_WritePin(IMU_struct->GPIO_port, IMU_struct->GPIO_Pin, GPIO_PIN_RESET );//Setting CS Pin
 	const HAL_StatusTypeDef return_Value = HAL_SPI_TransmitReceive(&IMU_struct->SPI_handler, TX, RX, length, Timeout);
-	HAL_GPIO_WritePin(IMU_struct->GPIO_port, IMU_struct->GPIO_Pin, GPIO_PIN_SET );
-
-	return return_Value;
-}
-
-HAL_StatusTypeDef IMU_start_send_cmd_it(IMU *IMU_struct, uint8_t TX[], uint8_t RX[], uint16_t length)
-{
-	//Sends and Receives two bytes to the Sensor
-	//HAL_SPI_Abort(&IMU_struct->SPI_handler);
-	uint32_t Timeout = 3;
-	HAL_GPIO_WritePin(IMU_struct->GPIO_port, IMU_struct->GPIO_Pin, GPIO_PIN_RESET );
-	const HAL_StatusTypeDef return_Value = HAL_SPI_TransmitReceive_IT(&IMU_struct->SPI_handler, TX, RX, length);
+	HAL_GPIO_WritePin(IMU_struct->GPIO_port, IMU_struct->GPIO_Pin, GPIO_PIN_SET );//unsetting CS Pin
 
 	return return_Value;
 }

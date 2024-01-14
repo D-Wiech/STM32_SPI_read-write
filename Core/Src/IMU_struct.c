@@ -44,6 +44,8 @@ uint8_t IMU2_data_TX[IMU_byte_count] = {29 | 0x80,0};
 uint8_t IMU2_data_RX[IMU_byte_count] = {0};
 uint8_t IMU1_new_data = 0;
 uint8_t IMU2_new_data = 0;
+uint8_t IMU1_SPI_IT_Finished = 0;
+uint8_t IMU2_SPI_IT_Finished = 0;
 
 void IMU_struct_set_up(IMU *IMU_struct, uint16_t accel_scale, uint16_t gyro_scale, uint16_t freq)
 {

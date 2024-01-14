@@ -1,4 +1,4 @@
-Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
+Core/Src/dma.o: ../Core/Src/dma.c ../Core/Inc/dma.h ../Core/Inc/main.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../Core/Inc/stm32h7xx_hal_conf.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h \
@@ -49,11 +49,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_gpio.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_dma.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_dmamux.h \
- ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_exti.h \
- ../Core/Inc/adc.h ../Core/Inc/main.h ../Core/Inc/cordic.h \
- ../Core/Inc/dma.h ../Core/Inc/dts.h ../Core/Inc/spi.h ../Core/Inc/tim.h \
- ../Core/Inc/usart.h ../Core/Inc/gpio.h ../Core/Inc/STM32_Cordic.h \
- ../Core/Inc/IMU_struct.h ../Core/Inc/IMU_cmds.h ../Core/Inc/IMU_struct.h
+ ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_exti.h
+../Core/Inc/dma.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
 ../Core/Inc/stm32h7xx_hal_conf.h:
@@ -106,16 +103,3 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_dma.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_dmamux.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_exti.h:
-../Core/Inc/adc.h:
-../Core/Inc/main.h:
-../Core/Inc/cordic.h:
-../Core/Inc/dma.h:
-../Core/Inc/dts.h:
-../Core/Inc/spi.h:
-../Core/Inc/tim.h:
-../Core/Inc/usart.h:
-../Core/Inc/gpio.h:
-../Core/Inc/STM32_Cordic.h:
-../Core/Inc/IMU_struct.h:
-../Core/Inc/IMU_cmds.h:
-../Core/Inc/IMU_struct.h:

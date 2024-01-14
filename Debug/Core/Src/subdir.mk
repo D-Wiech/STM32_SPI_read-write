@@ -10,6 +10,7 @@ C_SRCS += \
 ../Core/Src/STM32_Cordic.c \
 ../Core/Src/adc.c \
 ../Core/Src/cordic.c \
+../Core/Src/dma.c \
 ../Core/Src/dts.c \
 ../Core/Src/gpio.c \
 ../Core/Src/main.c \
@@ -28,6 +29,7 @@ OBJS += \
 ./Core/Src/STM32_Cordic.o \
 ./Core/Src/adc.o \
 ./Core/Src/cordic.o \
+./Core/Src/dma.o \
 ./Core/Src/dts.o \
 ./Core/Src/gpio.o \
 ./Core/Src/main.o \
@@ -46,6 +48,7 @@ C_DEPS += \
 ./Core/Src/STM32_Cordic.d \
 ./Core/Src/adc.d \
 ./Core/Src/cordic.d \
+./Core/Src/dma.d \
 ./Core/Src/dts.d \
 ./Core/Src/gpio.d \
 ./Core/Src/main.d \
@@ -66,7 +69,7 @@ Core/Src/%.o Core/Src/%.su Core/Src/%.cyclo: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/IMU_cmds.cyclo ./Core/Src/IMU_cmds.d ./Core/Src/IMU_cmds.o ./Core/Src/IMU_cmds.su ./Core/Src/IMU_struct.cyclo ./Core/Src/IMU_struct.d ./Core/Src/IMU_struct.o ./Core/Src/IMU_struct.su ./Core/Src/STM32_Cordic.cyclo ./Core/Src/STM32_Cordic.d ./Core/Src/STM32_Cordic.o ./Core/Src/STM32_Cordic.su ./Core/Src/adc.cyclo ./Core/Src/adc.d ./Core/Src/adc.o ./Core/Src/adc.su ./Core/Src/cordic.cyclo ./Core/Src/cordic.d ./Core/Src/cordic.o ./Core/Src/cordic.su ./Core/Src/dts.cyclo ./Core/Src/dts.d ./Core/Src/dts.o ./Core/Src/dts.su ./Core/Src/gpio.cyclo ./Core/Src/gpio.d ./Core/Src/gpio.o ./Core/Src/gpio.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/spi.cyclo ./Core/Src/spi.d ./Core/Src/spi.o ./Core/Src/spi.su ./Core/Src/stm32h7xx_hal_msp.cyclo ./Core/Src/stm32h7xx_hal_msp.d ./Core/Src/stm32h7xx_hal_msp.o ./Core/Src/stm32h7xx_hal_msp.su ./Core/Src/stm32h7xx_it.cyclo ./Core/Src/stm32h7xx_it.d ./Core/Src/stm32h7xx_it.o ./Core/Src/stm32h7xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32h7xx.cyclo ./Core/Src/system_stm32h7xx.d ./Core/Src/system_stm32h7xx.o ./Core/Src/system_stm32h7xx.su ./Core/Src/tim.cyclo ./Core/Src/tim.d ./Core/Src/tim.o ./Core/Src/tim.su ./Core/Src/usart.cyclo ./Core/Src/usart.d ./Core/Src/usart.o ./Core/Src/usart.su
+	-$(RM) ./Core/Src/IMU_cmds.cyclo ./Core/Src/IMU_cmds.d ./Core/Src/IMU_cmds.o ./Core/Src/IMU_cmds.su ./Core/Src/IMU_struct.cyclo ./Core/Src/IMU_struct.d ./Core/Src/IMU_struct.o ./Core/Src/IMU_struct.su ./Core/Src/STM32_Cordic.cyclo ./Core/Src/STM32_Cordic.d ./Core/Src/STM32_Cordic.o ./Core/Src/STM32_Cordic.su ./Core/Src/adc.cyclo ./Core/Src/adc.d ./Core/Src/adc.o ./Core/Src/adc.su ./Core/Src/cordic.cyclo ./Core/Src/cordic.d ./Core/Src/cordic.o ./Core/Src/cordic.su ./Core/Src/dma.cyclo ./Core/Src/dma.d ./Core/Src/dma.o ./Core/Src/dma.su ./Core/Src/dts.cyclo ./Core/Src/dts.d ./Core/Src/dts.o ./Core/Src/dts.su ./Core/Src/gpio.cyclo ./Core/Src/gpio.d ./Core/Src/gpio.o ./Core/Src/gpio.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/spi.cyclo ./Core/Src/spi.d ./Core/Src/spi.o ./Core/Src/spi.su ./Core/Src/stm32h7xx_hal_msp.cyclo ./Core/Src/stm32h7xx_hal_msp.d ./Core/Src/stm32h7xx_hal_msp.o ./Core/Src/stm32h7xx_hal_msp.su ./Core/Src/stm32h7xx_it.cyclo ./Core/Src/stm32h7xx_it.d ./Core/Src/stm32h7xx_it.o ./Core/Src/stm32h7xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32h7xx.cyclo ./Core/Src/system_stm32h7xx.d ./Core/Src/system_stm32h7xx.o ./Core/Src/system_stm32h7xx.su ./Core/Src/tim.cyclo ./Core/Src/tim.d ./Core/Src/tim.o ./Core/Src/tim.su ./Core/Src/usart.cyclo ./Core/Src/usart.d ./Core/Src/usart.o ./Core/Src/usart.su
 
 .PHONY: clean-Core-2f-Src
 

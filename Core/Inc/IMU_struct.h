@@ -38,6 +38,7 @@ typedef struct
 	uint8_t imu_cmd_accel_scale;
 	uint8_t scale_write_area;
 	uint8_t imu_cmd_freq; uint8_t freq_write_area;
+	uint8_t finished_IT_cmd;
 } IMU;
 
 enum IMU_accel_scale{
@@ -76,6 +77,8 @@ extern uint8_t IMU2_data_TX[IMU_byte_count];
 extern uint8_t IMU2_data_RX[IMU_byte_count];
 extern uint8_t IMU1_new_data;
 extern uint8_t IMU2_new_data;
+extern uint8_t IMU1_SPI_IT_Finished;
+extern uint8_t IMU2_SPI_IT_Finished;
 
 void IMU_struct_set_up(IMU *IMU_struct, uint16_t accel_scale, uint16_t gyro_scale, uint16_t freq);
 

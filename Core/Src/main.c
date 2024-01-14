@@ -20,6 +20,7 @@
 #include "main.h"
 #include "adc.h"
 #include "cordic.h"
+#include "dma.h"
 #include "dts.h"
 #include "spi.h"
 #include "tim.h"
@@ -71,6 +72,8 @@ int new_Magnetometer_data = 0;//Indicates new Magnetometer data
 const uint16_t BMP388_ADDR = (0b1110110);
 
 //IMU variables
+extern uint8_t IMU1_SPI_IT_Finished;
+extern uint8_t IMU2_SPI_IT_Finished;
 
 
 /* USER CODE END PV */
@@ -125,13 +128,14 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_CORDIC_Init();
+  MX_DMA_Init();
   MX_UART4_Init();
   MX_SPI2_Init();
   MX_TIM4_Init();
   MX_TIM3_Init();
   MX_ADC3_Init();
   MX_DTS_Init();
+  MX_CORDIC_Init();
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 
@@ -140,7 +144,7 @@ int main(void)
   memset(buffer, 0, sizeof(buffer));
 
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1); //Start USER LED
-  TIM4->CCR1 = 6874; // f = 2Hz
+  TIM4->CCR1 = 6874; // f ~ +2Hz
 
   //Starten des empfangens einer UART Nachricht
   //HAL_UARTEx_ReceiveToIdle_DMA(&huart4, rxbuffer, sizeof(rxbuffer));
@@ -160,6 +164,9 @@ int main(void)
   IMU2_data.GPIO_port = GYRO2_NSS_GPIO_Port;
   IMU2_data.GPIO_Pin = GYRO2_NSS_Pin;
 
+  HAL_NVIC_EnableIRQ(SPI1_IRQn);
+  HAL_NVIC_EnableIRQ(SPI2_IRQn);
+
 	uint16_t length = 2;
 	uint8_t TXData[2] = {117 | 0x80, 0}; // 0x80 results in a Read-operation
 	uint8_t RXData[2] = {0, 111};
@@ -169,6 +176,7 @@ int main(void)
 	uint32_t SPI2_ERROR_COUNT = 0;
 
 	HAL_Delay(50);
+	int i = 1;
 
   /* USER CODE END 2 */
 
@@ -180,9 +188,25 @@ int main(void)
 
 	  if(IMU_send_cmd(&IMU1_data, TXData, RXData, length) != HAL_OK)
 	  {
-		  HAL_Delay(50);
+		  debug_uart4_write_text("\nSPI1 HAL ERROR");
 	  }
-	  debug_uart4_write_text("WHO AM I (1): ");debug_uart4_write_int((int)RXData[1]);
+	//IMU1_SPI_IT_Finished = 0;
+	/*HAL_GPIO_WritePin(IMU1_data.GPIO_port, IMU1_data.GPIO_Pin, GPIO_PIN_RESET );
+	HAL_SPI_TransmitReceive_IT(&hspi1, TXData, RXData, length);
+	while(IMU1_SPI_IT_Finished == 0)
+		{
+
+		}
+	HAL_GPIO_WritePin(IMU1_data.GPIO_port, IMU1_data.GPIO_Pin, GPIO_PIN_RESET );
+	HAL_SPI_TransmitReceive_DMA(&hspi1, TXData, RXData, length);
+	while(IMU1_SPI_IT_Finished == 0)
+		{
+
+		}*/
+
+
+
+	  debug_uart4_write_text("\nWHO AM I (1): ");debug_uart4_write_int((int)RXData[1]);
 
 	  if(RXData[1] != 71)
 	  {
@@ -191,7 +215,18 @@ int main(void)
 	  }
 
 	  RXData[1] = 25;
-	  IMU_send_cmd(&IMU2_data, TXData, RXData, length);
+
+	  if(IMU_send_cmd(&IMU2_data, TXData, RXData, length) != HAL_OK)
+	  {
+		  debug_uart4_write_text("\nSPI2 HAL ERROR");
+	  }
+	  /*
+	  HAL_GPIO_WritePin(IMU2_data.GPIO_port, IMU1_data.GPIO_Pin, GPIO_PIN_RESET );
+	  HAL_SPI_TransmitReceive_IT(&hspi2, TXData, RXData, length);
+	  while(IMU2_SPI_IT_Finished == 0);
+	  */
+
+
 	  debug_uart4_write_text("; WHO AM I (2): ");debug_uart4_write_int((int)RXData[1]);
 
 	  if(RXData[1] != 71)
@@ -205,18 +240,16 @@ int main(void)
 		  debug_uart4_write_text("  ");debug_uart4_write_int((int)SPI1_ERROR_COUNT);debug_uart4_write_text(" SPI1 errors, ");debug_uart4_write_int((int)SPI2_ERROR_COUNT);debug_uart4_write_text(" SPI2 errors");
 	  }
 
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 	  Debug_send_Tempreture();
-	  HAL_Delay(250);
-	  int i = 0;
-	  /*
-	  while(i < 0xFFFFFF)
-	  {
-		  i++;
-	  }
-	  */
+	  HAL_Delay(i);
+
+	  debug_uart4_write_text("\n Delay length(ms): ");debug_uart4_write_int(i);
+	  i++;
   }
   /* USER CODE END 3 */
 }
